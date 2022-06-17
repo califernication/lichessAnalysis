@@ -1,0 +1,16 @@
+{
+    "name": "lichessAnalysis",
+    "description": "A simple chrome browser extension for one-click analysis of Chess.com games on Lichess.",
+    "version": "1.0",
+    "manifest_version": 3,
+    "permissions": [
+        "activeTab"
+    ],
+    "content_scripts": [
+        {
+          "matches": ["https://www.*chess.com/game*/"],
+          "css": ["my-styles.css"],
+          "js": ["export.js"]
+        }
+      ]
+  }
