@@ -35,20 +35,19 @@ function getPGN() {
     return value;
 }
 
+// use arrive.js to see when the PNG pops up.
 function getPGNSimple() {
-    setTimeout(() => {
-        //click download button to deploy PGN object in the DOM
-        let downloadButton = document.getElementsByClassName("icon-font-chess download daily-game-footer-button")[0];
-        console.log(downloadButton);
-        downloadButton.click();
-
-        //copy pgn
-        console.log(document.getElementsByClassName("share-menu-tab-pgn-textarea")[0]);
-
-        //close the download window
-        document.getElementsByClassName("icon-font-chess x icon-font-secondary")[0].click();
-
-    }, 1);
+    let downloadButton = document.getElementsByClassName("icon-font-chess download daily-game-footer-button")[0];
+    console.log(downloadButton);
+    downloadButton.click();
+    document.arrive(".share-menu-tab-pgn-textarea", function()  {
+        Arrive.unbindAllArrive();
+        let PGN = document.getElementsByClassName("share-menu-tab-pgn-textarea")[0];
+        console.log(PGN.value);
+        //Exit out of download view (x button)
+        document.querySelector("div.icon-font-chess.x.ui_outside-close-icon").click();
+    });
+    return PGN.value
 }
 
 // Make request to Lichess
@@ -71,7 +70,8 @@ document.arrive("button", function() {
         console.log("SUCCCC")
         Arrive.unbindAllArrive();
         duplicate(analysisButton);
-        getPGNSimple();
+        var PGN = getPGNSimple();
+        // sendToLichess();
     }
     // console.log(analysisButton);
     // console.log(child)
