@@ -8,9 +8,8 @@
     ],
     "content_scripts": [
         {
-          "matches": ["https://www.*chess.com/game*/"],
-          "css": ["my-styles.css"],
-          "js": ["export.js"]
+          "matches": ["https://*/*"],
+          "js": ["arrive.min.js", "export.js"]
         }
       ]
   }
