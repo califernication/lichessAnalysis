@@ -6,57 +6,46 @@ function duplicate(analysisButton){
     newButton.childNodes[2].innerText = "Lichess Analysis";
     var parentNode = analysisButton.parentNode;
     parentNode.append(newButton);
-}
-
-// Be weird with Chess.com API to fetch data
-function getPGN() {
-
-    const pgn = getPGN();
-    var currentUrl = window.location.href;
-    console.log(currentUrl);
-    var gameId = currentUrl.slice(-11);
-    console.log(gameId);
-    const APIurl = `chess.com/callback/live/game/${gameId}`;
-
-    pgnData(APIurl, requestData)
-        .then((response) => {
-            //on response, open the lichess game url window in a new tab 
-            let url = response["url"] ? response["url"] : "";
-            if (url) {
-                let lichessGameWindow = window.open(url);
-            } else alert("Could not import game");
-
-        }).catch((e) => {
-        alert("Error getting response from lichess.org");
-        throw new Error("Response error");
-    });
-    let lichessImportUrl = "https://lichess.org/api/import"
-    let requestData = {pgn: gamePGN};
-    return value;
-}
-
-// use arrive.js to see when the PNG pops up.
-function getPGNSimple() {
-    let downloadButton = document.getElementsByClassName("icon-font-chess download daily-game-footer-button")[0];
-    console.log(downloadButton);
-    downloadButton.click();
-    document.arrive(".share-menu-tab-pgn-textarea", function()  {
-        Arrive.unbindAllArrive();
-        let PGN = document.getElementsByClassName("share-menu-tab-pgn-textarea")[0];
-        console.log(PGN.value);
-        //Exit out of download view (x button)
-        document.querySelector("div.icon-font-chess.x.ui_outside-close-icon").click();
-    });
-    return PGN.value
+    newButton.addEventListener('click', () => {
+        sendToLichess();
+    });  
 }
 
 // Make request to Lichess
 function sendToLichess(){
+    // Get PGN
+
+    // Get and click download button on chess.com
+    let downloadButton = document.getElementsByClassName("icon-font-chess download")[0];
+    console.log(downloadButton);
+    downloadButton.click();
+
+    // Wait for share tab to pop up
+    document.arrive(".share-menu-tab-pgn-textarea", function()  {
+        Arrive.unbindAllArrive();
+
+        // Get PGN from text Area
+        var PGN = document.getElementsByClassName("share-menu-tab-pgn-textarea")[0].value;
+        console.log(PGN)
+
+        // Exit out of download view (x button)
+        document.querySelector("div.icon-font-chess.x.ui_outside-close-icon").click();
+        
+    });
+
+    window.open("https://lichess.org/paste", '_blank').focus();
+
+    document.arrive("#form3-pgn", function() {
+        Arrive.unbindAllArrive();
+        let pasteArea = document.getElementById("form3-pgn");
+        console.log(pasteArea)
+        pasteArea.innerText = PGN;
+    });
+    
     
 
-    newButton.addEventListener("click",
-    function(){ window.open(url, "url");; });
-
+    // newButton.addEventListener("click",
+    // function(){ window.open(url, "url");; });
 }
 
 document.arrive("button", function() {
@@ -67,15 +56,29 @@ document.arrive("button", function() {
     // newButton.id = "new";
     var child = analysisButton.firstChild;
     if(child.className === "ui_v5-button-icon icon-font-chess chess-board-search"){
-        console.log("SUCCCC")
+        console.log("About to create button.")
         Arrive.unbindAllArrive();
         duplicate(analysisButton);
-        var PGN = getPGNSimple();
-        // sendToLichess();
+        sendToLichess();
     }
-    // console.log(analysisButton);
-    // console.log(child)
 });
+
+async function postData(url = '', data = {}) {
+    var formBody = [];
+    for (var property in data) {
+        var encodedKey = encodeURIComponent(property);
+        var encodedValue = encodeURIComponent(data[property]);
+        formBody.push(encodedKey + "=" + encodedValue);
+    }
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: formBody
+    });
+    return response.json(); // parses JSON response into native JavaScript objects
+}
 
 
 
