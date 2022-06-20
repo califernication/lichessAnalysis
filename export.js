@@ -5,7 +5,7 @@ function duplicate(analysisButton){
     // console.log(analysisButton.childNodes[2]);
     newButton.childNodes[2].innerText = "Lichess Analysis";
     newButton.addEventListener('click', () => {
-        sendToLichess;
+        sendToLichess();
     });
     let parentNode = analysisButton.parentNode;
     parentNode.append(newButton);
@@ -67,7 +67,6 @@ document.arrive("button", function() {
         console.log("About to create button.")
         Arrive.unbindAllArrive();
         duplicate(analysisButton);
-        sendToLichess();
     }
 });
 
