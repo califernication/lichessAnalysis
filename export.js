@@ -1,14 +1,14 @@
 console.log("export.js inject");
 
 function duplicate(analysisButton){
-    var newButton = analysisButton.cloneNode("deep");
-    console.log(analysisButton.childNodes[2]);
+    let newButton = analysisButton.cloneNode("deep");
+    // console.log(analysisButton.childNodes[2]);
     newButton.childNodes[2].innerText = "Lichess Analysis";
-    var parentNode = analysisButton.parentNode;
-    parentNode.append(newButton);
     newButton.addEventListener('click', () => {
-        sendToLichess();
-    });  
+        sendToLichess;
+    });
+    let parentNode = analysisButton.parentNode;
+    parentNode.append(newButton);
 }
 
 // Make request to Lichess
@@ -17,7 +17,7 @@ function sendToLichess(){
 
     // Get and click download button on chess.com
     let downloadButton = document.getElementsByClassName("icon-font-chess download")[0];
-    console.log(downloadButton);
+    // console.log(downloadButton);
     downloadButton.click();
 
     // Wait for share tab to pop up
@@ -26,21 +26,29 @@ function sendToLichess(){
 
         // Get PGN from text Area
         var PGN = document.getElementsByClassName("share-menu-tab-pgn-textarea")[0].value;
-        console.log(PGN)
+        // console.log(PGN)
 
         // Exit out of download view (x button)
         document.querySelector("div.icon-font-chess.x.ui_outside-close-icon").click();
-        
+
+        let lichessImportUrl = "https://lichess.org/api/import"
+        let requestData = {pgn: PGN};
+        //send a post request to lichess to import a game
+        postData(lichessImportUrl, requestData)
+            .then((response) => {
+                //on response, open the lichess game url window in a new tab 
+                let url = response["url"] ? response["url"] : "";
+                if (url) {
+                    let lichessGameWindow = window.open(url);
+                } else alert("Could not import game");
+
+            }).catch((e) => {
+            alert("Error getting response from lichess.org");
+            throw new Error("Response error");
+        });
     });
 
-    window.open("https://lichess.org/paste", '_blank').focus();
-
-    document.arrive("#form3-pgn", function() {
-        Arrive.unbindAllArrive();
-        let pasteArea = document.getElementById("form3-pgn");
-        console.log(pasteArea)
-        pasteArea.innerText = PGN;
-    });
+    
     
     
 
@@ -63,6 +71,7 @@ document.arrive("button", function() {
     }
 });
 
+// async post function
 async function postData(url = '', data = {}) {
     var formBody = [];
     for (var property in data) {
@@ -77,51 +86,5 @@ async function postData(url = '', data = {}) {
         },
         body: formBody
     });
-    return response.json(); // parses JSON response into native JavaScript objects
+    return response.json();
 }
-
-
-
-
-
-// var analysisFrame = document.getElementsByClassName(".quick-analysis-buttons .ui_v5-button-component ui_v5-button-basic");
-// console.log(analysisFrame);
-
-// var clock = document.querySelector(".clock-component clock-white clock-top clock-player-turn player-clock");
-// console.log(clock);
-
-// analysisFrame.appendChild(analysisButton);
-
-
-// waitForElementToDisplay(".quick-analysis-buttons .ui_v5-button-component ui_v5-button-basic",function(){alert("Hi");},1000,9000);
-
-// function waitForElementToDisplay(selector, callback, checkFrequencyInMs, timeoutInMs) {
-//   var startTimeInMs = Date.now();
-//   (function loopSearch() {
-//     if (analysisFrame.querySelector.firstChild != undefined) {
-//       console.log("find")
-//       return;
-//     }
-//     else {
-//       console.log("not find")
-//       setTimeout(function () {
-//         if (timeoutInMs && Date.now() - startTimeInMs > timeoutInMs)
-//           return;
-//         loopSearch();
-//       }, checkFrequencyInMs);
-//     }
-//   })();
-
-// }
-
-
-
-// $(document).ready(function() {
-
-    
-    
-// });
-
-
-
-
