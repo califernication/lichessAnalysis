@@ -9,7 +9,7 @@ This is a Chromiun-based extension, so you can use it on Chrome, Edge, Opera, Fi
 **Firefox Addons**
 
 ## How to use?
-The extension after you have finished a game on chess.com or when you go to review a game. The script injects an HTML button under the nominal Analysis button that when clicked takes you to a Lichess analysis board of the same game.
+After you have finished a game on chess.com or when you go to review a game, the script injects an HTML button under the nominal Analysis button. When clicked, it takes you to a Lichess analysis board of the same game.
 
 ## FAQ
 
