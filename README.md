@@ -14,7 +14,7 @@ Pending review.
 Pending review.
 
 **Manual installation**  
-Drag the latest release from this repo and drop it in [chrome://extensions/](chrome://extensions/) or your web explorer's equivalent (make sure developer mode is enabled!).
+Drag the latest [release](https://github.com/califernication/lichessAnalysis/releases) from this repo and drop it in [chrome://extensions/](chrome://extensions/) or your web explorer's equivalent (make sure developer mode is enabled!).
 
 ## How to use?
 After you have finished a game on chess.com or when you go to review a game, the script injects an HTML button under the nominal Analysis button. When clicked, it takes you to a Lichess analysis board of the same game.
