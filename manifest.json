@@ -20,7 +20,7 @@
         {
           "matches": ["https://www.chess.com/*"],
           "js": [
-            "node_modules/arrive/arrive.js", "script.js"
+            "node_modules/arrive/minified/arrive.min.js", "script.js"
           ]
         }
       ]
