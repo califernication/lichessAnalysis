@@ -21,8 +21,6 @@ After you have finished a game on chess.com or when you go to review a game, the
 
 ![You'll see a nice new button like below](https://github.com/califernication/lichessAnalysis/blob/main/screenshots/buttons.png)
 
-![An image of the full page too!](https://github.com/califernication/lichessAnalysis/blob/main/screenshots/page.png)
-
 ## FAQ
 
 **Is there a game import limit?**  
