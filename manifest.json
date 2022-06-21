@@ -6,9 +6,12 @@
     "permissions": [
         "activeTab"
     ],
+    "host_permissions": [
+      "https://lichess.org/*"
+    ],
     "content_scripts": [
         {
-          "matches": ["https://*/*"],
+          "matches": ["https://www.chess.com/*"],
           "js": ["arrive.min.js", "export.js"]
         }
       ]
