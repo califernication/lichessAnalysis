@@ -1,6 +1,3 @@
-console.log("export.js inject");
-
-
 // Main loop
 document.arrive("button", function() {
     // Find chess.com analysisButton

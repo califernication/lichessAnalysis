@@ -3,12 +3,13 @@
     "description": "A simple chrome browser extension for one-click analysis of Chess.com games on Lichess.",
     "version": "1.0",
     "manifest_version": 3,
-    "homepage": "https://github.com/califernication/lichessAnalysis",
+    "icons": {
+      "16": "assets/img/16x16.png",
+      "48": "assets/img/48x48.png",
+      "128": "assets/img/128x128.png"
+     },
+    "homepage_url": "https://github.com/califernication/lichessAnalysis",
     "author": "califernication",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/califernication/lichessAnalysis"
-    },
     "permissions": [
         "activeTab"
     ],
@@ -18,7 +19,9 @@
     "content_scripts": [
         {
           "matches": ["https://www.chess.com/*"],
-          "js": ["arrive.min.js", "export.js"]
+          "js": [
+            "node_modules/arrive/arrive.js", "script.js"
+          ]
         }
       ]
   }
