@@ -1,6 +1,9 @@
 # lichessAnalysis
 A simple browser extension for one-click analysis of Chess.com games on Lichess.
 
+## Why?
+I love free, powerful open-source software! Chess.com does not offer free cloud analysis, only local line evaluations. The first is a lot easier to understand for beginners and much more accesible to users with lower end devices. Lichess cloud analysis is a wonderful tool, and for users who might not want to leave chess.com (for their friendds or arguably better puzzles and lessons) can get a glimpse of its advantages.
+
 ## Installation
 This is a Chromiun-based extension, so you can use it on Chrome, Edge, Opera, Firefox, or other (non-tested) web explorers. Find it either on the Firefox Addons website or the Chrome Webstore.
 
