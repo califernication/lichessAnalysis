@@ -1,11 +1,10 @@
 // Main loop
-document.arrive("button", function() {
+document.arrive(".quick-analysis-button", function() {
     // Find chess.com analysisButton
-    var analysisButton = document.querySelector("button.ui_v5-button-component.ui_v5-button-basic")
-    if (analysisButton && analysisButton.firstChild.className === "ui_v5-button-icon icon-font-chess chess-board-search"){
-        Arrive.unbindAllArrive();
-        injectButton(analysisButton);
-    }
+    Arrive.unbindAllArrive();
+    var analysisButton = document.querySelector(".quick-analysis-button")
+    console.log(analysisButton)
+    injectButton(analysisButton);
 });
 
 // Injects a button similar to chess.com's native "Analysis" button 
@@ -14,6 +13,11 @@ function injectButton(analysisButton){
     let newButton = analysisButton.cloneNode("deep");
     // Style it and link it to the Lichess import function.
     newButton.childNodes[2].innerText = "Lichess Analysis";
+    newButton.style.margin = "8px 0px 0px 0px";
+    newButton.childNodes[0].classList.remove("icon-font-chess")
+    newButton.childNodes[0].classList.add("button-class")
+    newButton.classList.add("shine-hope-anim")
+    newButton.childNodes[0].style["height"] = "3.805rem";
     newButton.addEventListener('click', () => {
         sendToLichess();
     });
