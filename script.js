@@ -62,7 +62,7 @@ function sendToLichess(){
     });
 }
 
-// async post function
+// async POST function
 async function post(url = '', data = {}) {
     var formBody = [];
     for (var property in data) {
