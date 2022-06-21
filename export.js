@@ -1,23 +1,36 @@
 console.log("export.js inject");
 
-function duplicate(analysisButton){
+
+// Main loop
+document.arrive("button", function() {
+    // Find chess.com analysisButton
+    var analysisButton = document.querySelector("button.ui_v5-button-component.ui_v5-button-basic")
+    if (analysisButton && analysisButton.firstChild.className === "ui_v5-button-icon icon-font-chess chess-board-search"){
+        Arrive.unbindAllArrive();
+        injectButton(analysisButton);
+    }
+});
+
+// Injects a button similar to chess.com's native "Analysis" button 
+function injectButton(analysisButton){
+    // Duplicate the original button
     let newButton = analysisButton.cloneNode("deep");
-    // console.log(analysisButton.childNodes[2]);
+    // Style it and link it to the Lichess import function.
     newButton.childNodes[2].innerText = "Lichess Analysis";
     newButton.addEventListener('click', () => {
         sendToLichess();
     });
+    // Append back into the DOM
     let parentNode = analysisButton.parentNode;
     parentNode.append(newButton);
 }
 
-// Make request to Lichess
+// Make request to Lichess through the API (fetch)
 function sendToLichess(){
-    // Get PGN
+    // 1. Get PGN
 
     // Get and click download button on chess.com
     let downloadButton = document.getElementsByClassName("icon-font-chess download")[0];
-    // console.log(downloadButton);
     downloadButton.click();
 
     // Wait for share tab to pop up
@@ -26,20 +39,19 @@ function sendToLichess(){
 
         // Get PGN from text Area
         var PGN = document.getElementsByClassName("share-menu-tab-pgn-textarea")[0].value;
-        // console.log(PGN)
 
         // Exit out of download view (x button)
         document.querySelector("div.icon-font-chess.x.ui_outside-close-icon").click();
 
-        let lichessImportUrl = "https://lichess.org/api/import"
-        let requestData = {pgn: PGN};
-        //send a post request to lichess to import a game
-        postData(lichessImportUrl, requestData)
+        // 2. Send a POST request to Lichess to import the current game
+        let importUrl = "https://lichess.org/api/import"
+        let req = {pgn: PGN};
+        post(importUrl, req)
             .then((response) => {
-                //on response, open the lichess game url window in a new tab 
+                // Open the page on a new tab
                 let url = response["url"] ? response["url"] : "";
                 if (url) {
-                    let lichessGameWindow = window.open(url);
+                    let lichessPage = window.open(url);
                 } else alert("Could not import game");
 
             }).catch((e) => {
@@ -47,31 +59,10 @@ function sendToLichess(){
             throw new Error("Response error");
         });
     });
-
-    
-    
-    
-
-    // newButton.addEventListener("click",
-    // function(){ window.open(url, "url");; });
 }
 
-document.arrive("button", function() {
-    // Arrive.unbindAllArrive();
-    // 'this' refers to the newly created element
-    var analysisButton = document.querySelector("button.ui_v5-button-component.ui_v5-button-basic")
-    // var newButton = analysisButton.cloneNode("deep");
-    // newButton.id = "new";
-    var child = analysisButton.firstChild;
-    if(child.className === "ui_v5-button-icon icon-font-chess chess-board-search"){
-        console.log("About to create button.")
-        Arrive.unbindAllArrive();
-        duplicate(analysisButton);
-    }
-});
-
 // async post function
-async function postData(url = '', data = {}) {
+async function post(url = '', data = {}) {
     var formBody = [];
     for (var property in data) {
         var encodedKey = encodeURIComponent(property);
