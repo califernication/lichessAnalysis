@@ -10,8 +10,6 @@
      },
     "homepage_url": "https://github.com/califernication/lichessAnalysis",
     "author": "califernication",
-    "permissions": [
-    ],
     "content_scripts": [
         {
           "matches": ["https://www.chess.com/*", "https://lichess.org/*"],
