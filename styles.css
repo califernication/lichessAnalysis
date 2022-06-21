@@ -2,6 +2,8 @@
     content: "\2658";
 }
 
+
+/* From TTTimon @ https://codepen.io/TTTimon/pen/gNBawq */
 .shine-hope-anim:after{ 
     content: '';
     position: absolute;
