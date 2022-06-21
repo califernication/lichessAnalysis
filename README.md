@@ -7,19 +7,20 @@ I love free, powerful open-source software! Chess.com does not offer free cloud 
 ## Installation
 This is a Chromiun-based extension, so you can use it on Chrome, Edge, Opera, Firefox, or other (non-tested) web explorers. Find it either on the Firefox Addons website or the Chrome Webstore.
 
-**Chrome Webstore**
+**Chrome Webstore**  
 Pending review.
 
-**Firefox Addons**
+**Firefox Addons**  
 Pending review.
 
-**Manual installation**
+**Manual installation**  
 Download the files from this repo, go to chrome://extensions/ (or your web explorer's equivalent) and click "load unpacked".
 
 ## How to use?
 After you have finished a game on chess.com or when you go to review a game, the script injects an HTML button under the nominal Analysis button. When clicked, it takes you to a Lichess analysis board of the same game.
 
-
+(https://github.com/califernication/lichessAnalysis/blob/main/screenshots/buttons.png)
+(https://github.com/califernication/lichessAnalysis/blob/main/screenshots/page.png)
 
 ## FAQ
 
