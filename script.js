@@ -1,11 +1,18 @@
 // Main loop
-document.arrive(".quick-analysis-button", function() {
-    // Find chess.com analysisButton
-    Arrive.unbindAllArrive();
-    var analysisButton = document.querySelector(".quick-analysis-button")
-    console.log(analysisButton)
-    injectButton(analysisButton);
-});
+checkGameStatus()
+
+function checkGameStatus() {
+    document.arrive(".quick-analysis-button", function() {
+        // Find chess.com analysisButton
+        var analysisButton = document.querySelector(".ui_v5-button-component.ui_v5-button-primary.ui_v5-button-full.quick-analysis-button")
+        console.log(analysisButton)
+        if (analysisButton.className == "ui_v5-button-component ui_v5-button-primary ui_v5-button-full quick-analysis-button"){
+            console.log("GOT HERE")
+            Arrive.unbindAllArrive();
+            injectButton(analysisButton);
+        }
+    });
+}
 
 // Injects a button similar to chess.com's native "Analysis" button 
 function injectButton(analysisButton){
@@ -24,6 +31,9 @@ function injectButton(analysisButton){
     // Append back into the DOM
     let parentNode = analysisButton.parentNode;
     parentNode.append(newButton);
+
+    // Allow the extension to check if another game is finished
+    checkGameStatus();
 }
 
 // Make request to Lichess through the API (fetch)
