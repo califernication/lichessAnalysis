@@ -19,7 +19,7 @@ Download the files from this repo, go to chrome://extensions/ (or your web explo
 ## How to use?
 After you have finished a game on chess.com or when you go to review a game, the script injects an HTML button under the nominal Analysis button. When clicked, it takes you to a Lichess analysis board of the same game.
 
-
+![You'll see a nice new button like below](https://github.com/califernication/lichessAnalysis/blob/main/screenshots/buttons.png)
 
 ## FAQ
 
