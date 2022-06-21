@@ -12,12 +12,9 @@
     "author": "califernication",
     "permissions": [
     ],
-    "host_permissions": [
-      "https://lichess.org/*"
-    ],
     "content_scripts": [
         {
-          "matches": ["https://www.chess.com/*"],
+          "matches": ["https://www.chess.com/*", "https://lichess.org/*"],
           "css": ["styles.css"],
           "js": [
             "node_modules/arrive/minified/arrive.min.js", "script.js"
