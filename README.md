@@ -14,7 +14,9 @@ Pending review.
 Pending review.
 
 **Manual installation**  
-Drag the latest .crx file from [release](https://github.com/califernication/lichessAnalysis/releases) from this repo and drop it in [chrome://extensions/](chrome://extensions/) or your web explorer's equivalent (make sure developer mode is enabled!).
+Depending on your browser and your OS, you have two options.
+1. (Any OS): Download and unzip source code, go to [chrome://extensions/](chrome://extensions/) or your browser's equivalent, turn on developer mode, click on "load unpacked", and go to the directory of the source code.
+2. (Easier, but only MacOS/Linux) Drag the latest .crx file from [release](https://github.com/califernication/lichessAnalysis/releases) from this repo and drop it in [chrome://extensions/](chrome://extensions/) or your web explorer's equivalent (make sure developer mode is enabled!).
 
 ## How to use?
 After you have finished a game on chess.com or when you go to review a game, the script injects an HTML button under the nominal Analysis button. When clicked, it takes you to a Lichess analysis board of the same game.
