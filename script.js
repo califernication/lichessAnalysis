@@ -8,6 +8,7 @@ function checkGameStatus() {
         if (analysisButton.className == "ui_v5-button-component ui_v5-button-primary ui_v5-button-full quick-analysis-button"){
             Arrive.unbindAllArrive();
             injectButton(analysisButton);
+            checkGameStatus();
         }
     });
 }
@@ -19,6 +20,7 @@ function injectButton(analysisButton){
     // Style it and link it to the Lichess import function.
     newButton.childNodes[2].innerText = "Lichess Analysis";
     newButton.style.margin = "8px 0px 0px 0px";
+    newButton.style.padding = "0px 0px 0px 0px";
     newButton.childNodes[0].classList.remove("icon-font-chess")
     newButton.childNodes[0].classList.add("button-class")
     newButton.classList.add("shine-hope-anim")
@@ -29,9 +31,6 @@ function injectButton(analysisButton){
     // Append back into the DOM
     let parentNode = analysisButton.parentNode;
     parentNode.append(newButton);
-
-    // Allow the extension to check if another game is finished
-    checkGameStatus();
 }
 
 // Make request to Lichess through the API (fetch)
