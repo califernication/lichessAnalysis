@@ -1,7 +1,7 @@
 {
     "name": "Lichess Cloud Analysis for Chess.com",
     "description": "A simple chrome browser extension for one-click analysis of Chess.com games on Lichess.",
-    "version": "1.0",
+    "version": "1.1",
     "manifest_version": 3,
     "icons": {
       "16": "assets/img/16x16.png",
