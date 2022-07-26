@@ -8,7 +8,7 @@ I love free, powerful open-source software! Chess.com does not offer free cloud 
 This is a Chromiun-based extension, so you can use it on Chrome, Edge, Opera, Firefox, or other (non-tested) web explorers. Find it either on the Firefox Addons website or the Chrome Webstore.
 
 **Chrome Webstore**  
-Pending review.
+[Link!](https://chrome.google.com/webstore/detail/lichess-cloud-analysis-fo/ngepiabohcfcoggpfghnfoefpnmnfocd)
 
 **Firefox Addons**  
 Pending review.
