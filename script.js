@@ -2,10 +2,10 @@
 checkGameStatus()
 
 function checkGameStatus() {
-    document.arrive(".quick-analysis-buttons-review", function() {
+    document.arrive(".game-review-buttons-review", function() {
         // Find chess.com analysisButton
-        var analysisButton = document.querySelector(".ui_v5-button-component.ui_v5-button-primary.ui_v5-button-full.quick-analysis-buttons-button")
-        if (analysisButton.className == "ui_v5-button-component ui_v5-button-primary ui_v5-button-full quick-analysis-buttons-button"){
+        var analysisButton = document.querySelector(".ui_v5-button-component.ui_v5-button-primary.ui_v5-button-full.game-review-buttons-button")
+        if (analysisButton.className == "ui_v5-button-component ui_v5-button-primary ui_v5-button-full game-review-buttons-button"){
             Arrive.unbindAllArrive();
             injectButton(analysisButton);
             checkGameStatus();
