@@ -38,7 +38,7 @@ function sendToLichess(){
     // 1. Get PGN
 
     // Get and click download button on chess.com
-    let downloadButton = document.getElementsByClassName("icon-font-chess download")[0];
+    let downloadButton = document.getElementsByClassName("icon-font-chess share live-game-buttons-button")[0];
     downloadButton.click();
 
     // Wait for share tab to pop up
