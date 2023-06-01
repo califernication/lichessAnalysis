@@ -59,7 +59,7 @@ function sendToLichess(){
                 // Open the page on a new tab
                 const url = response["url"] ? response["url"] : "";
                 if (url) {
-                    const lichessPage = window.open(url);
+                    window.open(url);
                 } else alert("Could not import game");
 
             }).catch((e) => {
