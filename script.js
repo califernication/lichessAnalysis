@@ -2,6 +2,17 @@
 checkGameStatus()
 
 function checkGameStatus() {
+    // For bots we check for the quick analysis button
+    document.arrive(".quick-analysis-buttons", () => {
+        const analysisButton = document.querySelector(".ui_v5-button-component.ui_v5-button-basic.ui_v5-button-full.quick-analysis-button");
+        const isButtonValid = analysisButton?.className === "ui_v5-button-component ui_v5-button-basic ui_v5-button-full quick-analysis-button";
+        if (isButtonValid) {
+          Arrive.unbindAllArrive();
+          injectButton(analysisButton);
+          checkGameStatus();
+        }
+      });
+
     document.arrive(".game-review-buttons-review", function() {
         // Find chess.com analysisButton
         var analysisButton = document.querySelector(".ui_v5-button-component.ui_v5-button-primary.ui_v5-button-full.game-review-buttons-button")
