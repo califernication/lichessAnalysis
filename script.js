@@ -32,7 +32,19 @@ function injectButton(analysisButton){
     let parentNode = analysisButton.parentNode;
     parentNode.append(newButton);
 }
+function convertPGNToMoves(pgn) {
+    const lines = pgn.split("\n").map((s) => s.trim());
 
+    // Finding index of the empty newline, after that we have our PGN.
+    const idx = lines.map(Boolean).indexOf(false);
+    const moves = lines.slice(idx + 1).join();
+
+    if (!moves || moves.length === 0) {
+      console.error("Invalid PGN input. No moves found.");
+      return "";
+    }
+    return moves
+}
 // Make request to Lichess through the API (fetch)
 function sendToLichess(){
     // 1. Get PGN
@@ -51,21 +63,9 @@ function sendToLichess(){
         // Exit out of download view (x button)
         document.querySelector("div.icon-font-chess.x.ui_outside-close-icon").click();
 
-        // 2. Send a POST request to Lichess to import the current game
-        let importUrl = "https://lichess.org/api/import"
-        let req = {pgn: PGN};
-        post(importUrl, req)
-            .then((response) => {
-                // Open the page on a new tab
-                let url = response["url"] ? response["url"] : "";
-                if (url) {
-                    let lichessPage = window.open(url);
-                } else alert("Could not import game");
-
-            }).catch((e) => {
-            alert("Error getting response from lichess.org");
-            throw new Error("Response error");
-        });
+        // 2. Open the game in a Lichess analysis tab.
+        let importUrl = "https://lichess.org/analysis/pgn"
+        window.open(`${importUrl}/${convertPGNToMoves(PGN)}`);
     });
 }
 
